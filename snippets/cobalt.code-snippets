@@ -1,0 +1,83 @@
+{
+   "Main Function": {
+      "prefix": "main",
+      "body": [
+         "import std.io;",
+         "",
+         "void main() ${1}",
+         "{",
+         "   $0",
+         "}"
+      ],
+      "description": "Cobalt main function"
+   },
+   "Virtual Class Definition": {
+      "prefix": "vclass",
+      "body": [
+         "virtual class ${1:Name} extends ${2:Base} impl ${3:Interface}",
+         "{",
+         "",
+         " public:",
+         "   ${1:Name}($0);",
+         "}"
+      ],
+      "description": "Virtual Class declaration"
+   },
+   "Struct Definition": {
+      "prefix": "struct",
+      "body": [
+         "struct ${1:Name}",
+         "{",
+         "   $0",
+         "}"
+      ],
+      "description": "Struct definition"
+   },
+   "Print Line Interpolated": {
+      "prefix": "plni",
+      "body": [
+         "println(i\"$1\");$0"
+      ],
+      "description": "Print line with interpolation"
+   },
+   "Type Extension": {
+      "prefix": "typedimpl",
+      "body": [
+         "type ${1:int} impl ${2:interface} ",
+         "{",
+         "   $0",
+         "}"
+      ],
+      "description": "Implement a defined interface on type"
+   },
+   "Type Extension Raw": {
+      "prefix": "typeimpl",
+      "body": [
+         "type ${1:int} impl interface",
+         "{",
+         "   $0",
+         "}"
+      ],
+      "description": "Implement a defined interface on type"
+   },
+   "Function": {
+      "prefix": "fn",
+      "body": [
+         "${1:void} $2($3)",
+         "{",
+         "   $0",
+         "}"
+      ],
+      "description": "Implement a defined interface on type"
+   },
+   "Member Function": {
+      "prefix": "mfn",
+      "body": [
+         "${1:void} $2(&this, $3)",
+         "{",
+         "   $0",
+         "}"
+      ],
+      "description": "Implement a defined interface on type"
+   },
+}

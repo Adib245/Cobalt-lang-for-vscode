@@ -1,0 +1,68 @@
+{
+   "name": "cobalt-lang-for-vscode",
+   "displayName": "Cobalt Lang for VSCode",
+   "description": "An extension for the currently in the works Cobalt programming language",
+   "version": "0.0.1",
+   "icon": "assets/icon.png",
+   "license": "MIT",
+   "publisher": "Alec269",
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/Adib245/cobalt-lang-for-vscode.git"
+   },
+   "bugs": {
+      "url": "https://github.com/Adib245/cobalt-lang-for-vscode/issues"
+   },
+   "author": {
+      "name": "Nomayer Alam"
+   },
+   "contributors": [
+      "Alec benjamin"
+   ],
+   "readme": "README.md",
+   "engines": {
+      "vscode": "^1.105.0"
+   },
+   "categories": [
+      "Programming Languages",
+      "Snippets"
+   ],
+   "contributes": {
+      "languages": [
+         {
+            "id": "cobalt",
+            "aliases": [
+               "Cobalt",
+               "cobalt"
+            ],
+            "extensions": [
+               ".cb",
+               ".cbt",
+               ".co",
+               ".cobalt"
+            ],
+            "configuration": "./language-configuration.json"
+         }
+      ],
+      "grammars": [
+         {
+            "language": "cobalt",
+            "scopeName": "source.cobalt",
+            "path": "./syntaxes/cobalt.tmLanguage.json"
+         }
+      ],
+      "snippets": [
+         {
+            "language": "cobalt",
+            "path": "./snippets/cobalt.code-snippets"
+         }
+      ],
+      "iconThemes": [
+         {
+            "id": "cobalt-icon-theme",
+            "label": "Cobalt File Icons",
+            "path": "./icons/icon-theme.json"
+         }
+      ]
+   }
+}

@@ -1,0 +1,13 @@
+{
+   "iconDefinitions": {
+      "_cobalt_file": {
+         "iconPath": "./cobalt-icon.svg"
+      }
+   },
+   "fileExtensions": {
+      "cb": "_cobalt_file",
+      "cbt": "_cobalt_file",
+      "co": "_cobalt_file",
+      "cobalt": "_cobalt_file"
+   }
+}
