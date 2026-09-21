@@ -4,7 +4,7 @@
       "body": [
          "import std.io;",
          "",
-         "void main() ${1}",
+         "void main() ${1:throws} ${2:ErrorName}",
          "{",
          "   $0",
          "}"
@@ -23,6 +23,18 @@
       ],
       "description": "Virtual Class declaration"
    },
+   "Class Definition": {
+      "prefix": "class",
+      "body": [
+         "class ${1:Name} impl ${3:Interface}",
+         "{",
+         "",
+         " public:",
+         "   ${1:Name}($0);",
+         "}"
+      ],
+      "description": "Class declaration"
+   },
    "Struct Definition": {
       "prefix": "struct",
       "body": [
@@ -36,48 +48,68 @@
    "Print Line Interpolated": {
       "prefix": "plni",
       "body": [
-         "println(i\"$1\");$0"
+         "println( i\"$1\" ); $0"
       ],
       "description": "Print line with interpolation"
    },
-   "Type Extension": {
+   "Type Extension Raw": {
       "prefix": "typedimpl",
       "body": [
-         "type ${1:int} impl ${2:interface} ",
+         "impl type int",
          "{",
          "   $0",
          "}"
       ],
-      "description": "Implement a defined interface on type"
+      "description": "Implement a non-predefined interface on type"
    },
-   "Type Extension Raw": {
+   "Type Extension": {
       "prefix": "typeimpl",
       "body": [
-         "type ${1:int} impl interface",
+         "impl ${1:Interface} for type int",
          "{",
          "   $0",
          "}"
       ],
-      "description": "Implement a defined interface on type"
+      "description": "Implement a predefined interface on primitive type"
    },
    "Function": {
-      "prefix": "fn",
+      "prefix": "fun",
       "body": [
          "${1:void} $2($3)",
          "{",
          "   $0",
          "}"
       ],
-      "description": "Implement a defined interface on type"
+      "description": "A function"
+   },
+   "Function fn": {
+      "prefix": "fn",
+      "body": [
+         "fn $1($2) : ${3:void}",
+         "{",
+         "   $0",
+         "}"
+      ],
+      "description": "A function with fn keyword"
    },
    "Member Function": {
-      "prefix": "mfn",
+      "prefix": "mfun",
       "body": [
          "${1:void} $2(&this, $3)",
          "{",
          "   $0",
          "}"
       ],
-      "description": "Implement a defined interface on type"
+      "description": "A mutable method"
+   },
+   "Member Function fn": {
+      "prefix": "mfn",
+      "body": [
+         "fn $1(&this, $2) : ${3:void}",         
+         "{",
+         "   $0",
+         "}"
+      ],
+      "description": "A mutable method with fn keyword"
    },
 }

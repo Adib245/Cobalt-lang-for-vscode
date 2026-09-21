@@ -1,0 +1,31 @@
+{
+   "name": "cobalt-lang-for-vscode-client",
+   "displayName": "Cobalt Lang for VSCode:CLIENT",
+   "description": "VSCode part of the language server",
+   "version": "0.0.1",
+   "icon": "assets/icon.png",
+   "license": "MIT",
+   "publisher": "Alec269",
+   "author": {
+      "name": "Nomayer Alam"
+   },
+   "contributors": [
+      "Alec benjamin"
+   ],
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/Adib245/cobalt-lang-for-vscode.git"
+   },
+   "engines": {
+      "vscode": "^1.100.0"
+   },
+   "dependencies": {
+      "glob": "^11.0.0",
+      "vscode-languageclient": "^9.0.1"
+   },
+   "devDependencies": {
+      "@types/vscode": "^1.100.0",
+      "@vscode/test-electron": "^2.3.9"
+   },
+   "overrides": {}
+}

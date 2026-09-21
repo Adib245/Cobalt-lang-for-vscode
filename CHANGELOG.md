@@ -8,3 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Initial release
 - Added textmate grammar
+
+## [0.0.2] 2026-09-21
+
+- Implemented a ver rudimentary language server that provides autocomplete for keywords.
+
