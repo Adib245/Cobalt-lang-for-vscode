@@ -1,0 +1,24 @@
+import std.io;
+
+import legacy "stdio.h" as stdio;
+
+void main() throws IOError
+{
+   var example1 = 12; // inference
+   int example2 = 12;
+
+   final example3 = 13 // inference + immutability
+   final int example4 = 13 // immutability
+
+   const example5 = true; // constant + inference
+   const bool example6 = true; // constant
+
+   println(i"variables =  $example1 {example2:b} $example3 $example4 $example5 $example6");
+
+   writeln("variables = ", example1, example2, example3, example4, example5, example6);
+
+   stdio.printf(
+      "variables = %d %d %d %d %d %d \n",
+      example1, example2, example3, example4, (example5 as int), (example6 as int)
+   );
+}

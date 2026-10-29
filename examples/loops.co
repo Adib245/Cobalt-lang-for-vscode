@@ -1,0 +1,38 @@
+import std.io;
+
+void main() 
+{
+   int[] arr1 = [1, 2, 3, 4, 5, 6];
+
+   for (a in arr1) {
+      a += 1;
+   }
+
+   for (a in 1..6 by 2) {
+      println(a);
+   }
+
+   for (idx, val of arr1) {
+      println(i"arr[$idx] = $val");
+   }
+
+   int counter = 4;
+   while ( counter > 1 ) {
+      counter -= 1;
+   }
+
+   loop {
+      counter += 1;
+
+      if (counter >= 10) {
+         break;
+      }
+   }
+
+   strview a1 = loop {
+      counter += 1;
+      if (counter >= 10) {
+         break eval "Hello";
+      }
+   };
+}

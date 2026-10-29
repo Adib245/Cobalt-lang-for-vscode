@@ -2,7 +2,7 @@
    "name": "cobalt-lang-for-vscode",
    "displayName": "Cobalt Lang for VSCode",
    "description": "An extension for the currently in the works Cobalt programming language",
-   "version": "0.0.2",
+   "version": "0.0.3",
    "icon": "assets/icon.png",
    "license": "MIT",
    "publisher": "Alec269",

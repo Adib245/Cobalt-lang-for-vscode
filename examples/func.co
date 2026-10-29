@@ -1,0 +1,53 @@
+import std.io;
+
+void main()
+{
+   // Lambdas / anonymous functions 
+   var lambda1 = () {
+      print("Hello");
+   };
+   lambda1();
+
+   var lambda2 = () => print("Hello");
+   lambda2();
+
+   var lambda3 = void() {
+      print("Hello");
+   };
+   lambda3(); 
+
+   var lambda4 = fn():void {
+      print("Hello");
+   };
+   lambda4(); 
+
+   // explicitly typed
+   fn():void lambda5 = () {
+      print("Hello");
+   };
+   lambda5();
+   
+   fn(int):Duration lambda6 = (age) {
+      return Duration(years: age);
+   };
+   lambda6();
+
+   var lambda7 = (int age) {
+      return Duration(years: age);
+   };
+   lambda6();
+}
+
+//! Async lib features not designed yet; this is an basic early mock up 
+Future<String> fetchData() async 
+{
+  await Future.delayed( Duration( seconds: 2 ));
+  return 'Data loaded';
+}
+
+template<T>
+where [ T : Numeric ] 
+T add( T a, T b ) 
+{
+   return a + b;
+}

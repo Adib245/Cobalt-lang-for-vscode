@@ -1,0 +1,33 @@
+// import std.raw.io;
+import std.errors;
+
+void main() throws IOError
+{
+   
+   try std.raw.io.Stdout.write("Hello");
+
+   unsafe {   
+      // ptr examples
+      (const int*)[5] p1; // array of 5 ptr to const int
+      const int[5]* p2; // ptr to array of 5 const int
+
+      fn(): int* p3; // fn returning an int ptr
+      (fn(): int)* p4; // ptr to fn returning an int
+
+      fn(): (fn():int)*[] p5; // anf fn returning a ptr to an array of ptr to fn returning int
+
+      const int* p6; // ptr to const int
+      (const int)* p7; // clearer version
+
+      const* int  p8; // const (compile time) ptr to int
+      final* int  p9; // immutable ptr to int
+
+      int* p10;
+      void* p11;
+
+      volatile* int p12; // volatile ptr to in
+      volatile int* p13; // ptr to volatile int
+      volatile* volatile int p13; // volatile ptr to volatile int
+   }
+}
+

@@ -2,7 +2,7 @@
    "name": "cobalt-lang-for-vscode-server",
    "displayName": "Cobalt Lang for VSCode:SERVER",
    "description": "Basic implementation of the Cobalt language server in node typescript",
-   "version": "0.0.2",
+   "version": "0.0.3",
    "icon": "assets/icon.png",
    "license": "MIT",
    "publisher": "Alec269",

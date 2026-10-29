@@ -1,0 +1,97 @@
+
+void main() 
+{
+   // Array ; owning
+   // mutable
+   int[5] arr = [ 1, 2, 3, 4, 5 ];
+   // immutable
+   final int[5] arr2 = [ 1, 2, 3, 4, 5 ];
+
+   for ( a in arr) 
+   {
+      print(a);
+   }
+
+   for ( idx, val of arr) 
+   {
+      print(i"arr[$idx] = $val");
+   }
+
+   // Array Matrix; size must be specified; 
+   int[3, 5] matrix = [ 
+      [ 1, 2, 3, 4, 5 ],
+      [ 1, 2, 3, 4, 0 ],
+      [ 1, 2, 0, 4, 5 ],
+   ];
+   
+   int[3, 2, 2] matrix = [ 
+      [
+         [1, 2] , [3, 4]
+      ],
+      [
+         [5, 6] , [7, 8]
+      ],
+      [
+         [9, 1] , [2, 3]
+      ],
+   ];
+
+
+   // Tuple
+   var( int:2, float:2, strview, int) tuple = ( 1, 0xb6ad, 3.14159 , 4.0, "gg", 0b10 );
+   
+   var tuple2 = ( true, 0o44, S"hello" );
+
+   // Tuple matrix ; allows for any type
+   var matrix2 = (
+      ( 1, 2.44, 3, 4, 5 ),
+      ( 1, "hh", 3, 4, 0 ),
+      ( 1, true, 0, 4, 5 )
+   );
+
+   // Map
+   var map1 = {
+      1 : "America",
+      2 : "Canada",
+      3 : "Australia",
+      4 : "Russia",
+   }
+   
+   // explicit typing
+   var{int, strview} map2 = {
+      1 : "America",
+      2 : "Canada",
+      3 : "Australia",
+      4 : "Russia",
+   }
+
+   // Safe vector
+   ArrayList<{int, int}> points = {
+      { 12, 4 },
+      { 11, 4 },
+      { 12, 3 }
+   }; 
+
+
+   int[5] arr1 = [ 1, 2, 3, 4, 5 ];
+
+   // Slices; non-owning view to a contiguous chunk of memory ; size unknown at comptime
+   // array syntax and slice syntax are different for clarity
+   []int sl1 = arr1[1..3];
+
+   []int sl2 = arr1[1..<3];
+
+   []final int sl3 = arr1[1..3];// slice of immutable int ; data is immutable
+   final []int sl4 = arr1[1..3]; // immutable slice of int ; var is immutable
+
+   // []int sl  = [ 1, 2, 3, 4, 5 ]; // error slice can't own memory
+
+   void printNumbers([]const int nums) {
+      for (n in nums) {
+         println(`Val: $n`);
+      }
+   }
+
+   int[] dynamicArr = [1, 2, 3];
+   printNumbers(dynamicArr); // will work seamlessly
+}

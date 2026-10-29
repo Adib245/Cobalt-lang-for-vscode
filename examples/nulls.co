@@ -1,0 +1,55 @@
+
+void main()  
+{
+   int? maybeAge = null; // Optional integer; under the hood: Tagged Union (Struct with a Discriminant)
+   
+
+   int*? nn = null; // uses 0x0 under the hood; cause the location 0 in mem is protected.
+   bool? huh = null; // niche optimisation
+   
+   int age = maybeAge ?? 18; // Fallback if null (null-coalescing)
+
+   // Optional chaining
+   String? name = user?.profile?.name; // '?.' null safe access ; return val ifn null else return `null`
+   int g = maybeAge!; // non-null assertion ; if null then compile error
+
+   Car? car1 = {}; // stack nullable var
+   Car*? car1 = {}; // heap nullable var
+   Car^? car1 = {}; // heap nullable var **safe**
+   // {} are the universal initialiser that acts according to what the action requires.
+   // so for classes it calls as the constructor
+}
+
+/*
+# Proposed Logic -----------------------------------
+
+1. The Tagged Union (Struct with a Discriminant)
+
+For standard primitive types where all values are valid, int? compiles down under the hood into a small, 
+transparent struct containing a tag (boolean flag) and the value.
+
+   How it looks in memory:
+   ```
+      // What the compiler generates under the hood for int?
+      struct OptionalInt {
+         bool has_value; // 1 byte (plus alignment padding)
+         int value;      // 4 bytes
+      }
+   ```
+   The Size Trade-off: Because of CPU memory alignment and padding, a 4-byte int wrapped in an optional (int?) usually expands to 8 bytes total on a 32-bit/64-bit architecture—4 bytes for the data and 4 bytes for the tag/padding.
+
+2. Niche Optimization (The Zero-Cost Alternative)
+
+For many other types, the compiler can use niche optimization to achieve a true zero-cost optional with no extra memory overhead.
+.
+.   How it works: If a type has unused bit patterns (a "niche"),
+.                   the compiler steals one of those invalid states to represent null.
+.   Examples where int?-style optionals cost zero extra bytes:
+.
+.   >  Booleans (bool?): A bool only uses 0 (false) and 1 (true). That leaves 254 unused bit patterns 
+.                          in a single byte. The compiler can easily use 2 to mean null.
+.   >  Non-Null References / Pointers (*T?): As you noted, nullptr (0) is invalid, so a nullable
+.                                              pointer uses zero extra bytes.
+.   >  Enums with limited ranges: If an enum only has 3 valid states, the remaining bit patterns 
+.                                    can represent null.
+*/

@@ -11,22 +11,40 @@
       ],
       "description": "Cobalt main function"
    },
-   "Virtual Class Definition": {
-      "prefix": "vclass",
+   // Vars ----------------
+   "var": {
+      "prefix": "var",
       "body": [
-         "virtual class ${1:Name} extends ${2:Base} impl ${3:Interface}",
-         "{",
-         "",
-         " public:",
-         "   ${1:Name}($0);",
-         "}"
+         "var ${1:name} = ${2};",
       ],
-      "description": "Virtual Class declaration"
+      "description": "variable declaration"
    },
+   "final": {
+      "prefix": "final",
+      "body": [
+         "final ${1:name} = ${2};",
+      ],
+      "description": "variable declaration"
+   },
+   "const": {
+      "prefix": "const",
+      "body": [
+         "const ${1:Type} ${1:name} = ${2};",
+      ],
+      "description": "variable declaration"
+   },
+   "static": {
+      "prefix": "static",
+      "body": [
+         "static ${1:Type} ${1:name} = ${2};",
+      ],
+      "description": "variable declaration"
+   },
+   // Constructs
    "Class Definition": {
       "prefix": "class",
       "body": [
-         "class ${1:Name} impl ${3:Interface}",
+         "class ${1:Name}",
          "{",
          "",
          " public:",
@@ -45,14 +63,53 @@
       ],
       "description": "Struct definition"
    },
-   "Print Line Interpolated": {
-      "prefix": "plni",
+   "Enum definition": {
+      "prefix": "enum",
       "body": [
-         "println( i\"$1\" ); $0"
+         "enum ${1:Name}",
+         "{",
+         "   $0",
+         "}"
       ],
-      "description": "Print line with interpolation"
+      "description": "Enum definition"
    },
-   "Type Extension Raw": {
+   "Enum Class definition": {
+      "prefix": "enumc",
+      "body": [
+         "enum class ${1:Name}",
+         "{",
+         "   ${2:Member}",
+         " ;",
+         "   ${0:Method}",
+         "}"
+      ],
+      "description": "Enum definition"
+   },
+   "Class Definition with Interface": {
+      "prefix": "classi",
+      "body": [
+         "class ${1:Name} impl ${3:Interface}",
+         "{",
+         "",
+         " public:",
+         "   ${1:Name}($0);",
+         "}"
+      ],
+      "description": "Class declaration"
+   },
+   "Virtual Class Definition": {
+      "prefix": "vclass",
+      "body": [
+         "virtual class ${1:Name} extends ${2:Base} impl ${3:Interface}",
+         "{",
+         "",
+         " public:",
+         "   ${1:Name}($0);",
+         "}"
+      ],
+      "description": "Virtual Class declaration"
+   },
+   "Primitive Type Extension Raw": {
       "prefix": "typedimpl",
       "body": [
          "impl type int",
@@ -62,10 +119,30 @@
       ],
       "description": "Implement a non-predefined interface on type"
    },
-   "Type Extension": {
+   "Primitive Type Extension": {
       "prefix": "typeimpl",
       "body": [
          "impl ${1:Interface} for type int",
+         "{",
+         "   $0",
+         "}"
+      ],
+      "description": "Implement a predefined interface on primitive type"
+   },
+   "Type Extension Raw": {
+      "prefix": "typedimpl",
+      "body": [
+         "impl ${1:TypeName}",
+         "{",
+         "   $0",
+         "}"
+      ],
+      "description": "Implement a non-predefined interface on type"
+   },
+   "Type Extension": {
+      "prefix": "typeimpl",
+      "body": [
+         "impl ${1:Interface} for ${1:TypeName}",
          "{",
          "   $0",
          "}"
@@ -95,7 +172,7 @@
    "Member Function": {
       "prefix": "mfun",
       "body": [
-         "${1:void} $2(&this, $3)",
+         "${1:void} $2(var& this, $3)",
          "{",
          "   $0",
          "}"
@@ -105,11 +182,146 @@
    "Member Function fn": {
       "prefix": "mfn",
       "body": [
-         "fn $1(&this, $2) : ${3:void}",         
+         "fn $1(var& this, $2) : ${3:void}",
          "{",
          "   $0",
          "}"
       ],
       "description": "A mutable method with fn keyword"
+   },
+   "Print Line Interpolated": {
+      "prefix": "plni",
+      "body": [
+         "println( i\"$1\" ); $0"
+      ],
+      "description": "Print line with interpolation"
+   },
+   // control
+   "if": {
+      "prefix": "if",
+      "body": [
+         "if ($1) {",
+         "   $0",
+         "}"
+      ],
+      "description": "if statement"
+   },
+   "if-else": {
+      "prefix": "ife",
+      "body": [
+         "if ($1) {",
+         "   $2",
+         "} else {",
+         "   $0",
+         "}"
+      ],
+      "description": "if-else statement"
+   },
+   "else": {
+      "prefix": "else",
+      "body": [
+         "else {",
+         "   $0",
+         "}"
+      ],
+      "description": "else statement"
+   },
+   "elif": {
+      "prefix": "elif",
+      "body": [
+         "else if ($1) {",
+         "   $0",
+         "}"
+      ],
+      "description": "elif statement"
+   },
+   "match": {
+      "prefix": "match",
+      "body": [
+         "match ($1) {",
+         "   case $2 => $0;",
+         "}"
+      ],
+      "description": "match statement"
+   },
+   "match with default": {
+      "prefix": "matchd",
+      "body": [
+         "match ($1) {",
+         "   case $2 => $3;",
+         "   default => $0;",
+         "}"
+      ],
+      "description": "match statement"
+   },
+   // Loops
+   "for loop": {
+      "prefix": "for",
+      "body": [
+         "for ($1 in ${2:range/iter}) {",
+         "   $0",
+         "}"
+      ],
+      "description": "for loop statement"
+   },
+   "for loop by": {
+      "prefix": "forb",
+      "body": [
+         "for ($1 in ${2:range} by ${3:num}) {",
+         "   $0",
+         "}"
+      ],
+      "description": "for loop statement"
+   },
+   "for of loop": {
+      "prefix": "foro",
+      "body": [
+         "for (idx, val of ${2:container}) {",
+         "   $0",
+         "}"
+      ],
+      "description": "for of loop statement"
+   },
+   "while loop": {
+      "prefix": "while",
+      "body": [
+         "while ( $1 ) {",
+         "   $0",
+         "}"
+      ],
+      "description": "for of loop statement"
+   },
+   "loop": {
+      "prefix": "loop",
+      "body": [
+         "loop {",
+         "   $0",
+         "}"
+      ],
+      "description": "for of loop statement"
+   },
+   "import": {
+      "prefix": "import",
+      "body": [
+         "import $1;",
+         "$0"
+      ],
+      "description": "import statement"
+   },
+   "path import": {
+      "prefix": "importp",
+      "body": [
+         "import \"$1\" as ${2:Name};",
+         "$0"
+      ],
+      "description": "import via path"
+   },
+   "legacy import": {
+      "prefix": "importl",
+      "body": [
+         "import legacy \"$1\" as ${2:Name};",
+         "$0"
+      ],
+      "description": "legacy import statement"
    },
 }

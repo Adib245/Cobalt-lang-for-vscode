@@ -1,0 +1,54 @@
+import std.io;
+
+void main()  
+{
+   int x = 1;
+   int y = 0;
+   
+   int z = -5;
+
+   // Arithmetic
+   x = 1 + 1;
+   x = 1 - 1;
+   x = 2 * 1;
+   x = 2 / 1;
+   x = 2 % 1;
+   x = x ** 2;
+
+   // Bitwise
+   x = 1 & 1;
+   x = 1 | 1;
+   x = 1 ~ 1;
+   x = 2 ^ 1;
+   x = 2 << 1;
+   x = 2 >> 1;
+
+   // Compound assignment
+   x += 1;
+   x -= 1;
+   x *= 2;
+   x /= 2;
+   x %= 2;
+   x **= 2;
+
+   x &= 1;
+   x |= 1;
+   x ~= 1;
+   x ^= 2;
+   x <<= 2;
+   x >>= 2;
+
+   // logical
+   bool state1 = true || false;
+   bool state2 = true && false;
+   bool state3 = !true;
+
+   // comparison
+   bool n1 = x == y;
+   bool n2 = x != y;
+   bool n3 = x <= y;
+   bool n4 = x >= y;
+   bool n5 = x < y;
+   bool n6 = x > y;
+   
+}

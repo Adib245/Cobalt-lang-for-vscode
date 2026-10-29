@@ -1,0 +1,44 @@
+
+void main() 
+{
+   add<int>(1, 2);
+
+   // annotating is not actually needed
+   add(1.2, 23);
+
+}
+
+template<T>
+where [
+   T : Numeric, // add constraint for each type param separated by commas
+] 
+T add( T a, T b ) 
+{
+   return a + b;
+}
+
+// T... represents a variadic parameter pack
+template<T...>
+void printAll(T... items) {
+   // Can be iterated or unpacked at compile time
+   for (item in items) {
+      println(item);
+   }
+   println(`Entire param list ${items...}`) // unpacking uses the operator in reverse of packing
+}
+
+template<T>
+class MyList
+{
+ public:
+   MyList();
+}
+
+// Specialisation for empty
+template
+class MyList
+{
+ public:
+   MyList();
+}
+

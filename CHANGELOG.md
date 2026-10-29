@@ -11,5 +11,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [0.0.2] 2026-09-21
 
-- Implemented a ver rudimentary language server that provides autocomplete for keywords.
+- Implemented a very rudimentary language server that provides autocomplete for keywords.
 
+## [0.0.3] 2026-10-29
+
+- improved textmate highlighting
+- added extra autocomplete in language server

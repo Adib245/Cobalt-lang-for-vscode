@@ -26,6 +26,12 @@
                "include": "#strings"
             },
             {
+               "include": "#functions"
+            },
+            {
+               "include": "#imports"
+            },
+            {
                "include": "#keywords"
             },
             {
@@ -33,9 +39,6 @@
             },
             {
                "include": "#numbers"
-            },
-            {
-               "include": "#functions"
             },
             {
                "include": "#named-parameters"
@@ -97,7 +100,7 @@
          "patterns": [
             {
                "name": "keyword.control.cobalt",
-               "match": "\\b(if|else|while|for|in|return|try|throws|match|break|continue|case|default|catch|loop|where)\\b"
+               "match": "\\b(if|else|while|for|in|of|return|try|throws|match|break|continue|case|default|catch|loop|where)\\b"
             },
             {
                "name": "keyword.control.async.cobalt",
@@ -105,7 +108,7 @@
             },
             {
                "name": "keyword.other.cobalt",
-               "match": "\\b(fn|import|part|virtual|extends|impl|template|type|static|unsafe|const|final|auto|as|this|super|abstract|sealed|set|get|factory|export|extern|operator)\\b"
+               "match": "\\b(fn|import|part|virtual|extends|impl|template|type|static|unsafe|const|final|var|as|this|super|abstract|sealed|partial|set|get|factory|export|extern|operator|do|eval|base|defer|volatile|copy|move|null|legacy)\\b"
             },
             {
                "name": "keyword.control.access.modifier.cobalt",
@@ -294,7 +297,7 @@
          "patterns": [
             {
                "name": "string.quoted.double.heap.cobalt",
-               "begin": "(S)(\")",
+               "begin": "(S|s)(\")",
                "beginCaptures": {
                   "1": {
                      "name": "keyword.other.string.prefix.cobalt"
@@ -348,6 +351,10 @@
       "operators": {
          "patterns": [
             {
+               "name": "keyword.operator.pack-unpack.cobalt",
+               "match": "\\.\\.\\."
+            },
+            {
                "name": "keyword.operator.match.arrow.cobalt",
                "match": "=>"
             },
@@ -364,16 +371,36 @@
                "match": "\\."
             },
             {
-               "name": "keyword.operator.pointer.cobalt",
-               "match": "(\\^|\\*)"
-            },
-            {
                "name": "keyword.operator.anonymous.constructor.cobalt",
                "match": "\\$"
             },
             {
+               "name": "keyword.operator.arithmetic.assignment.cobalt",
+               "match": "(\\*{2}\\=|\\+\\=|\\-\\=|\\*\\=|\\/\\=|\\%\\=)"
+            },
+            {
                "name": "keyword.operator.arithmetic.cobalt",
                "match": "(\\*{2}|\\+|\\-|\\*|/|%)"
+            },
+            {
+               "name": "keyword.operator.logical.cobalt",
+               "match": "\\&{2}|\\|{2}|\\!"
+            },
+            {
+               "name": "keyword.operator.bitwise.assignment.cobalt",
+               "match": "(\\&\\=|\\|\\=|\\^\\=|\\<{2}\\=|\\>{2}\\=)"
+            },
+            {
+               "name": "keyword.operator.bitwise.cobalt",
+               "match": "\\&|\\||\\^|\\<{2}|\\>{2}|\\~"
+            },
+            {
+               "name": "keyword.operator.comparison.cobalt",
+               "match": "(\\={2}|\\<=|\\>=|\\!=|\\<|\\>)"
+            },
+            {
+               "name": "keyword.operator.pointer.cobalt",
+               "match": "(\\^|\\*)"
             },
             {
                "name": "keyword.operator.assignment.cobalt",
@@ -390,6 +417,22 @@
             {
                "name": "keyword.operator.reference.cobalt",
                "match": "&"
+            },
+            {
+               "name": "keyword.operator.null.aware.access.cobalt",
+               "match": "\\?\\."
+            },
+            {
+               "name": "keyword.operator.nullable.cobalt",
+               "match": "\\?"
+            },
+            {
+               "name": "keyword.operator.null.coalescing.cobalt",
+               "match": "\\?{2}"
+            },
+            {
+               "name": "keyword.operator.non-null.assertion.cobalt",
+               "match": "\\!"
             }
          ]
       },
@@ -426,14 +469,14 @@
                      "name": "keyword.operator.access.standard.cobalt"
                   },
                   "3": {
-                     "name": "variable.parameter.cobalt"
+                     "name": "variable.field.cobalt"
                   }
                }
             }
          ]
       },
       "function-arguments": {
-         "begin": "\\b(?!(?:auto|if|else|while|for|in|return|try|throws|match|break|continue|case|default|catch|loop|async|await|yield|fn|import|part|virtual|extends|impl|template|type|static|unsafe|const|final|as|this|super|abstract|sealed|set|get|factory|export|extern|operator)\\b)([a-z_][a-zA-Z0-9_]*)\\s*(\\()",
+         "begin": "\\b(?!(?:if|else|while|for|in|of|return|try|throws|match|break|continue|case|default|catch|loop|where|async|await|yield|fn|import|part|virtual|extends|impl|template|type|static|unsafe|const|final|var|as|this|super|abstract|sealed|partial|set|get|factory|export|extern|operator|do|eval|base|defer|volatile|copy|move|null|legacy|public|private|protected|struct|class|error|enum|interface|true|false|void|byte|short|int|long|wide|float|double|quad|bool|strview|char|ubyte|ushort|uint|ulong|uwide|usize|isize)\\b)([a-z_][a-zA-Z0-9_]*)\\s*(\\()",
          "beginCaptures": {
             "1": {
                "name": "entity.name.function.cobalt"
@@ -482,6 +525,36 @@
             {
                "name": "variable.custom.cobalt",
                "match": "([a-zA-Z_][a-zA-Z0-9_]*)"
+            }
+         ]
+      },
+      "imports": {
+         "begin": "\\b(import)\\b",
+         "beginCaptures": {
+            "1": {
+               "name": "keyword.control.import.cobalt"
+            }
+         },
+         "end": "(?=;)",
+         "patterns": [
+            {
+               "include": "#strings"
+            },
+            {
+               "match": "\\b(legacy|as)\\b",
+               "name": "keyword.other.import.cobalt"
+            },
+            {
+               "match": "\\.",
+               "name": "keyword.operator.access.standard.cobalt"
+            },
+            {
+               "match": "\\b[A-Z][a-zA-Z0-9_]*\\b",
+               "name": "entity.name.type.class.cobalt"
+            },
+            {
+               "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b",
+               "name": "entity.name.namespace.cobalt"
             }
          ]
       }

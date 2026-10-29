@@ -1,0 +1,25 @@
+import std.io;
+
+void main()
+{
+   int age = 25;
+
+   if (age > 12) {
+      println("Not adolescent");
+   } else if (age < 18) {
+      println("not adult");
+   } else {
+      println("huh"); 
+   }
+
+   match (age) {
+      case 0..3 => println("Baby");
+      case 4..6 => println("Toddler");
+      case 7..12 => println("Adolescent");
+      case 13..19 => println("Teen");
+      default => println("Adult");
+   }
+
+   strview status = ( age > 18 ) ? "Adult" : "Minor";
+
+}

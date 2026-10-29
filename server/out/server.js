@@ -228,17 +228,19 @@ const keywordCompletions = [
         kind: node_1.CompletionItemKind.Keyword,
         insertTextFormat: node_1.InsertTextFormat.Snippet,
         insertText: "import ${0};",
-        detail: "Can be used to import another module"
+        detail: "Can be used to import another module",
+        data: 24
     },
     {
         label: 'fn',
         kind: node_1.CompletionItemKind.Keyword,
+        data: 25
     },
     {
         label: 'if',
         kind: node_1.CompletionItemKind.Keyword,
         data: 26,
-        detail: ""
+        detail: "Conditional keyword"
     },
     {
         label: 'else',
@@ -409,11 +411,17 @@ const keywordCompletions = [
         detail: ""
     },
     {
-        label: 'abstract',
+        label: 'base',
         kind: node_1.CompletionItemKind.Keyword,
-        data: 55,
+        data: 54,
         detail: ""
     },
+    // {
+    //    label: 'abstract',
+    //    kind: CompletionItemKind.Keyword,
+    //    data: 55,
+    //    detail: ""
+    // },
     {
         label: 'break',
         kind: node_1.CompletionItemKind.Keyword,
@@ -516,6 +524,60 @@ const keywordCompletions = [
         data: 72,
         detail: ""
     },
+    {
+        label: 'partial',
+        kind: node_1.CompletionItemKind.Keyword,
+        data: 73,
+        detail: ""
+    },
+    {
+        label: 'do',
+        kind: node_1.CompletionItemKind.Keyword,
+        data: 74,
+        detail: ""
+    },
+    {
+        label: 'eval',
+        kind: node_1.CompletionItemKind.Keyword,
+        data: 75,
+        detail: ""
+    },
+    {
+        label: 'of',
+        kind: node_1.CompletionItemKind.Keyword,
+        data: 76,
+        detail: ""
+    },
+    {
+        label: 'defer',
+        kind: node_1.CompletionItemKind.Keyword,
+        data: 77,
+        detail: ""
+    },
+    {
+        label: 'volatile',
+        kind: node_1.CompletionItemKind.Keyword,
+        data: 78,
+        detail: ""
+    },
+    {
+        label: 'copy',
+        kind: node_1.CompletionItemKind.Keyword,
+        data: 79,
+        detail: ""
+    },
+    {
+        label: 'move',
+        kind: node_1.CompletionItemKind.Keyword,
+        data: 80,
+        detail: ""
+    },
+    {
+        label: 'null',
+        kind: node_1.CompletionItemKind.Keyword,
+        data: 81,
+        detail: ""
+    },
 ];
 // This handler provides the initial list of the completion items.
 connection.onCompletion((_textDocumentPosition) => {
@@ -524,53 +586,30 @@ connection.onCompletion((_textDocumentPosition) => {
     // info and always provide the same completion items.
     const completions = [
         {
-            label: 'auto',
+            label: 'var',
             kind: node_1.CompletionItemKind.Keyword,
-            insertTextFormat: node_1.InsertTextFormat.Snippet,
-            insertText: "auto ${1} = ${2};",
             data: 1,
+            detail: ""
         },
         {
             label: 'final',
             kind: node_1.CompletionItemKind.Keyword,
-            insertTextFormat: node_1.InsertTextFormat.Snippet,
-            insertText: "final ${1} = ${2};",
             data: 2
         },
         {
             label: 'const',
             kind: node_1.CompletionItemKind.Keyword,
-            insertTextFormat: node_1.InsertTextFormat.Snippet,
-            insertText: "const ${1:type} ${2} = ${0};",
             data: 3
         },
         {
             label: 'static',
             kind: node_1.CompletionItemKind.Keyword,
-            insertTextFormat: node_1.InsertTextFormat.Snippet,
-            insertText: "static ${1:Type} ${2} = ${0};",
             data: 4
         },
-        {
-            label: 'var',
-            kind: node_1.CompletionItemKind.Snippet,
-            insertTextFormat: node_1.InsertTextFormat.Snippet,
-            insertText: "${1:Type} ${2} = ${0};",
-            data: 5,
-        },
         // {
-        // 	label: 'fun',
-        // 	kind: CompletionItemKind.Snippet,
-        // 	insertTextFormat: InsertTextFormat.Snippet,
-        // 	insertText: "${1:Type} ${2:name} ( ${3:params} ) \r\n{\r\n   ${0}\r\n};",
-        // 	data: 4
-        // },
-        // {
-        // 	label: 'fn',
-        // 	kind: CompletionItemKind.Snippet,
-        // 	insertTextFormat: InsertTextFormat.Snippet,
-        // 	insertText: "fn ${2:name} ( ${3:params} ) : ${1:Type} \r\n{\r\n   ${0}\r\n};",
-        // 	data: 4
+        //    label: '',
+        //    kind: CompletionItemKind.Keyword,
+        //    data: 77
         // },
     ];
     return mergeArrays(completions, TypeKW, keywordCompletions);
@@ -579,7 +618,7 @@ connection.onCompletion((_textDocumentPosition) => {
 // the completion list.
 connection.onCompletionResolve((item) => {
     switch (item.label) {
-        case 'auto':
+        case 'var':
             item.detail = "Can be used to declare a variable without specifying its type";
             break;
         // case '':

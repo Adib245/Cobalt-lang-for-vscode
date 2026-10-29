@@ -281,17 +281,19 @@ const keywordCompletions: CompletionItem[] = [
       kind: CompletionItemKind.Keyword,
       insertTextFormat: InsertTextFormat.Snippet,
       insertText: "import ${0};",
-      detail: "Can be used to import another module"
+      detail: "Can be used to import another module",
+      data: 24
    },
    {
       label: 'fn',
       kind: CompletionItemKind.Keyword,
+      data: 25
    },
    {
       label: 'if',
       kind: CompletionItemKind.Keyword,
       data: 26,
-      detail: ""
+      detail: "Conditional keyword"
    },
 
    {
@@ -489,13 +491,19 @@ const keywordCompletions: CompletionItem[] = [
       data: 54,
       detail: ""
    },
-
    {
-      label: 'abstract',
+      label: 'base',
       kind: CompletionItemKind.Keyword,
-      data: 55,
+      data: 54,
       detail: ""
    },
+
+   // {
+   //    label: 'abstract',
+   //    kind: CompletionItemKind.Keyword,
+   //    data: 55,
+   //    detail: ""
+   // },
 
    {
       label: 'break',
@@ -615,6 +623,61 @@ const keywordCompletions: CompletionItem[] = [
       data: 72,
       detail: ""
    },
+   {
+      label: 'partial',
+      kind: CompletionItemKind.Keyword,
+      data: 73,
+      detail: ""
+   },
+
+   {
+      label: 'do',
+      kind: CompletionItemKind.Keyword,
+      data: 74,
+      detail: ""
+   },
+   {
+      label: 'eval',
+      kind: CompletionItemKind.Keyword,
+      data: 75,
+      detail: ""
+   },
+   {
+      label: 'of',
+      kind: CompletionItemKind.Keyword,
+      data: 76,
+      detail: ""
+   },
+   {
+      label: 'defer',
+      kind: CompletionItemKind.Keyword,
+      data: 77,
+      detail: ""
+   },
+   {
+      label: 'volatile',
+      kind: CompletionItemKind.Keyword,
+      data: 78,
+      detail: ""
+   },
+   {
+      label: 'copy',
+      kind: CompletionItemKind.Keyword,
+      data:79 ,
+      detail: ""
+   },
+   {
+      label: 'move',
+      kind: CompletionItemKind.Keyword,
+      data: 80,
+      detail: ""
+   },
+   {
+      label: 'null',
+      kind: CompletionItemKind.Keyword,
+      data: 81,
+      detail: ""
+   },
 
 ];
 
@@ -628,57 +691,32 @@ connection.onCompletion(
 
       const completions: CompletionItem[] = [
          {
-            label: 'auto',
+            label: 'var',
             kind: CompletionItemKind.Keyword,
-            insertTextFormat: InsertTextFormat.Snippet,
-            insertText: "auto ${1} = ${2};",
             data: 1,
+            detail: ""
          },
          {
             label: 'final',
             kind: CompletionItemKind.Keyword,
-            insertTextFormat: InsertTextFormat.Snippet,
-            insertText: "final ${1} = ${2};",
             data: 2
          },
-
          {
             label: 'const',
             kind: CompletionItemKind.Keyword,
-            insertTextFormat: InsertTextFormat.Snippet,
-            insertText: "const ${1:type} ${2} = ${0};",
             data: 3
          },
          {
             label: 'static',
             kind: CompletionItemKind.Keyword,
-            insertTextFormat: InsertTextFormat.Snippet,
-            insertText: "static ${1:Type} ${2} = ${0};",
             data: 4
          },
-         {
-            label: 'var',
-            kind: CompletionItemKind.Snippet,
-            insertTextFormat: InsertTextFormat.Snippet,
-            insertText: "${1:Type} ${2} = ${0};",
-            data: 5,
-         },
          // {
-         // 	label: 'fun',
-         // 	kind: CompletionItemKind.Snippet,
-         // 	insertTextFormat: InsertTextFormat.Snippet,
-         // 	insertText: "${1:Type} ${2:name} ( ${3:params} ) \r\n{\r\n   ${0}\r\n};",
-         // 	data: 4
-         // },
-         // {
-         // 	label: 'fn',
-         // 	kind: CompletionItemKind.Snippet,
-         // 	insertTextFormat: InsertTextFormat.Snippet,
-         // 	insertText: "fn ${2:name} ( ${3:params} ) : ${1:Type} \r\n{\r\n   ${0}\r\n};",
-         // 	data: 4
+         //    label: '',
+         //    kind: CompletionItemKind.Keyword,
+         //    data: 77
          // },
       ];
-
       return mergeArrays(completions, TypeKW, keywordCompletions);
    }
 );
@@ -688,15 +726,12 @@ connection.onCompletion(
 connection.onCompletionResolve(
    (item: CompletionItem): CompletionItem => {
       switch (item.label) {
-         case 'auto':
+         case 'var':
             item.detail = "Can be used to declare a variable without specifying its type";
             break;
          // case '':
          // 	item.detail = "";
          // 	break;
-
-
-
          default:
             break;
       }
